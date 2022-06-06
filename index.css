@@ -1,3 +1,33 @@
 body {
-    background-color: green;
+    background-color: #000000;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+header {
+    width: 550px;
+    min-height: 190px;
+    margin: 0 auto;
+    margin-top: 90px;
+    background-color: #3A69D2;
+    font-family: Inter;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 40px;
+}
+
+header p {
+    font-size: 16px;
+    line-height: 28%;
+}
+
+#main {
+    width: 550px;
+    height: 529px;
+    margin: 0 auto;
+    border: 1px solid red;
 }
