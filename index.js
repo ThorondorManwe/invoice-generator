@@ -4,7 +4,12 @@ const pullWeedsButton = document.getElementById("pull-weeds");
 
 const taskDiv = document.getElementById("task");
 const totalDiv = document.getElementById("total");
+const totalPriceDiv = document.getElementById("cero");
+const weAccept = document.getElementById("we-accept");
 
+const invoiceButton = document.getElementById("invoice-button");
+
+let sumaPrecio = 0;
 const servicesObject = [
     {
         "service": "Wash Car",
@@ -36,7 +41,7 @@ function putServicesOnArray(serviceFromButton, priceFromButton) {
 }
 
 // Saca servicios en el array
-function quitServicesOnArray(elemento, id, priceId) {
+function quitServicesOnArray(elemento, price, id, priceId) {
     // Primero necesito saber el index del elemento en el array
     const myIndex = servicesArray.findIndex(object => {
         return object.service === elemento;
@@ -53,6 +58,12 @@ function quitServicesOnArray(elemento, id, priceId) {
         // Elimina el div por el ID
         elementService.remove();
         elementPrice.remove();
+        // resta el precio del total que se imprime en el DOM y quita el parrafo we accept cuando no hay items
+        sumaPrecio -= price;
+        totalPriceDiv.textContent = `$${sumaPrecio}`;
+        if(sumaPrecio === 0) {
+            weAccept.textContent = "";
+        }
         printTask();
     }
     
@@ -64,6 +75,7 @@ function quitServicesOnArray(elemento, id, priceId) {
 // Toma los servicios en el array y los mete en el DOM
 // Imprime el servicio en el invoice
 function printTask() {
+    
 
     for(let i = 0; i < servicesArray.length; i++) {
         //console.log(servicesArray[i]);
@@ -82,6 +94,8 @@ function printTask() {
             const priceDivId = `delete${serviceNoSpace}`; 
             const deleteButton = document.createElement("button");
 
+            
+
             // Le pone una clase al div para poder seleccionarlo despues y elminarlo
             serviceDiv.setAttribute("id", serviceNoSpace);
 
@@ -91,14 +105,16 @@ function printTask() {
             //deleteButton.setAttribute("id", `remove${serviceNoSpace}`);
             //deleteButton.setAttribute("onclick", quitServicesOnArray(serviceNoSpace));
             deleteButton.addEventListener('click', function() {
-                quitServicesOnArray(serviceInArray, serviceNoSpace, priceDivId);
+                quitServicesOnArray(serviceInArray, priceInArray, serviceNoSpace, priceDivId);
             });
             
             // Llena el parrafo con el servicio
             servicePar.textContent = serviceInArray;
             incluidoEnDom.push(serviceInArray);
+
             serviceDiv.appendChild(servicePar);
             serviceDiv.appendChild(deleteButton);
+            serviceDiv.classList.add('service-div');
 
             // Llena el div
             taskDiv.appendChild(serviceDiv);
@@ -109,7 +125,16 @@ function printTask() {
             pricePar.textContent = `$${priceInArray}`;
             priceDiv.setAttribute("id", priceDivId);
             priceDiv.appendChild(pricePar);
+            priceDiv.classList.add('price-div');
             totalDiv.appendChild(priceDiv);
+
+            // Llena el total primero en cero y después actualiza el valor conforme vaya sumando
+            sumaPrecio += priceInArray;
+            totalPriceDiv.textContent = `$${sumaPrecio}`;
+            console.log(`La suma del precio es: ${sumaPrecio}`);
+
+            // Llena el párrafo we-accept
+            weAccept.textContent = "We accept cash, credit card, or PayPal";
         }
     }
 }
@@ -127,6 +152,38 @@ pullWeedsButton.addEventListener('click', function() {
     putServicesOnArray("Pull Weeds", 30);
 });
 
+invoiceButton.addEventListener('click', function() {
+    sumaPrecio = 0;
+    // limpia los arrays de datos
+    while (servicesArray.length > 0) {
+        servicesArray.pop();
+    }
+    
+    while (incluidoEnDom.length > 0) {
+        incluidoEnDom.pop();
+    }
+    console.log(servicesArray);
+    console.log(sumaPrecio);
 
+    // Limpia el DOM de elementos
+    totalPriceDiv.textContent = `$${sumaPrecio}`;
+    const serviceDivs = document.querySelectorAll('.service-div');
+    const priceDivs = document.querySelectorAll('.price-div');
+
+    serviceDivs.forEach(div => {
+        div.remove();
+    });
+
+    priceDivs.forEach(diver => {
+        diver.remove();
+    });
+    
+    weAccept.textContent = "";
+    printTask();
+    
+   console.log("Print from button");
+});
+
+totalPriceDiv.textContent = `$${sumaPrecio}`;
 
 console.log(taskDiv);
