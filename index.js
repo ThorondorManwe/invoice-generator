@@ -85,6 +85,7 @@ function printTask() {
         const foundInDom = incluidoEnDom.includes(servicesArray[i]["service"]);
         if(!foundInDom) {
             let serviceDiv = document.createElement('div');
+            let servicePriceDiv = document.createElement('div');
             let priceDiv = document.createElement('div');
             let servicePar = document.createElement('p');
             let serviceInArray = servicesArray[i]["service"];
@@ -92,7 +93,8 @@ function printTask() {
             //const deleteButton = `<button onclick="quitServicesOnArray({service: ${service}, price: ${price}})">Remove</button>`;
             const serviceNoSpace = serviceInArray.replace(/\s+/g, '');
             const priceDivId = `delete${serviceNoSpace}`; 
-            const deleteButton = document.createElement("button");
+            const deleteButton = document.createElement("p");
+            let pricePar = document.createElement('p');
 
             
 
@@ -101,6 +103,7 @@ function printTask() {
 
             // Llena el botón con texto y el onclick
             deleteButton.textContent = "Remove";
+            deleteButton.classList.add('deleteService');
             //deleteButton.onclick = quitServicesOnArray(serviceInArray);
             //deleteButton.setAttribute("id", `remove${serviceNoSpace}`);
             //deleteButton.setAttribute("onclick", quitServicesOnArray(serviceNoSpace));
@@ -116,22 +119,24 @@ function printTask() {
             serviceDiv.appendChild(deleteButton);
             serviceDiv.classList.add('service-div');
 
+            servicePriceDiv.appendChild(serviceDiv);
+            servicePriceDiv.classList.add("servicePrice");
+
             // Llena el div
-            taskDiv.appendChild(serviceDiv);
+            taskDiv.appendChild(servicePriceDiv);
             console.log(`Incluído en el DOM: ${incluidoEnDom}`);
 
             // También mete el precio en el DOM
-            let pricePar = document.createElement('p');
+            
             pricePar.textContent = `$${priceInArray}`;
-            priceDiv.setAttribute("id", priceDivId);
             priceDiv.appendChild(pricePar);
             priceDiv.classList.add('price-div');
-            totalDiv.appendChild(priceDiv);
+            servicePriceDiv.setAttribute("id", priceDivId);
+            servicePriceDiv.appendChild(priceDiv);
 
             // Llena el total primero en cero y después actualiza el valor conforme vaya sumando
             sumaPrecio += priceInArray;
             totalPriceDiv.textContent = `$${sumaPrecio}`;
-            console.log(`La suma del precio es: ${sumaPrecio}`);
 
             // Llena el párrafo we-accept
             weAccept.textContent = "We accept cash, credit card, or PayPal";

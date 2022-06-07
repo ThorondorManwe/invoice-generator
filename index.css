@@ -17,7 +17,7 @@ header {
 header h1 {
     font-size: 40px;
     font-weight: bold;
-    padding-top: 40px;
+    padding-top: 50px;
 }
 
 header p {
@@ -25,9 +25,88 @@ header p {
     line-height: 28%;
 }
 
+#botones {
+    width: 473px;
+    height: 45px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.serviceButton {
+    width: 143.17px;
+    height: 45px;
+    color: #4A4E74;
+    font-size: 14px;
+    font-weight: medium;
+    line-height: 16%;
+    background-color: #D1D4F4;
+    border: none;
+    border-radius: 6px;
+}
+
 #main {
     width: 550px;
     height: 529px;
     margin: 0 auto;
-    border: 1px solid red;
+    background-color: #1F2937;
+    border: 1px solid #1F2937;
+}
+
+#task-total {
+    width: 473px;
+    margin: 40px auto 20px auto;
+}
+
+#task-and-price {
+    width: 473px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#task-and-price h2, #total-and-price h2 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#task {
+    width: 473px;
+    margin: 0 auto;
+}
+
+.servicePrice {
+    width: 473px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-div {
+    display: flex;
+}
+
+.service-div p {
+    font-size: 20px;
+    margin: 0px;
+    margin-right: 15px;
+}
+
+.service-div .deleteService {
+    color: #D5D4D8;
+    font-size: 8px;
+    margin: 0px;
+}
+
+.price-div {
+    font-size: 24px;
+}
+
+.price-div p {
+    margin: 0px; 
+}
+
+
+hr {
+    width: 473px;
 }
