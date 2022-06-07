@@ -65,7 +65,7 @@ header p {
     justify-content: space-between;
 }
 
-#task-and-price h2, #total-and-price h2 {
+#task-and-price h2, #total-and-price h2, #notes h3, #totalAmount h3 {
     font-size: 12px;
     font-weight: bold;
 }
@@ -109,4 +109,39 @@ header p {
 
 hr {
     width: 473px;
+}
+
+
+#notes-amount {
+    width: 473px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#notes-amount #totalAmount {
+    height: 70px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#totalAmount #cero {
+    font-size: 36px;
+    text-align: right;
+    margin: 0px;
+}
+
+#invoice-button {
+    width: 473px;
+    margin: 40px auto 0px auto;
+}
+
+#invoice-button button {
+    width: 473px;
+    height: 44px;
+    color: white;
+    font-size: 16px;
+    background-color: #3A69D2;
+    border: none;
+    border-radius: 5px;
 }

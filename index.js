@@ -172,7 +172,7 @@ invoiceButton.addEventListener('click', function() {
 
     // Limpia el DOM de elementos
     totalPriceDiv.textContent = `$${sumaPrecio}`;
-    const serviceDivs = document.querySelectorAll('.service-div');
+    const serviceDivs = document.querySelectorAll('.servicePrice');
     const priceDivs = document.querySelectorAll('.price-div');
 
     serviceDivs.forEach(div => {
